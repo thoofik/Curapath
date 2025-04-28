@@ -1,0 +1,14 @@
+{
+  "name": "curapath-db-tools",
+  "version": "1.0.0",
+  "description": "Database tools for Curapath",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test-connection": "node test-connection.js",
+    "upload-schema": "node upload-schema.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.38.0"
+  }
+} 
