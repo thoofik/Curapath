@@ -1,0 +1,337 @@
+/* Base Styles */
+:root {
+  --primary-color: #4285f4;
+  --secondary-color: #34a853;
+  --accent-color: #fbbc05;
+  --danger-color: #ea4335;
+  --light-color: #f8f9fa;
+  --dark-color: #202124;
+  --gray-color: #5f6368;
+  --border-color: #dadce0;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', 'Segoe UI', Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--dark-color);
+  background-color: var(--light-color);
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header Styles */
+.App-header {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.App-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.App-header p {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.language-selector, .patient-selector {
+  margin: 0.5rem 0;
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+.language-selector label, .patient-selector label {
+  margin-right: 0.5rem;
+}
+
+.language-selector select, .patient-selector select {
+  padding: 0.3rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  font-size: 0.9rem;
+}
+
+/* Navigation Styles */
+.main-nav {
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.main-nav ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  justify-content: center;
+}
+
+.main-nav li {
+  padding: 0;
+}
+
+.main-nav a {
+  display: block;
+  padding: 1rem 2rem;
+  text-decoration: none;
+  color: var(--gray-color);
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.main-nav a:hover, .main-nav a.active {
+  color: var(--primary-color);
+  background-color: rgba(66, 133, 244, 0.1);
+}
+
+/* Main Content Styles */
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Treatment Plan Styles */
+.treatment-plan-summary {
+  background-color: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.treatment-plan-summary h2 {
+  margin-bottom: 1.5rem;
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 0.5rem;
+}
+
+.treatment-steps {
+  list-style: none;
+}
+
+.treatment-step {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+.treatment-step:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.treatment-step.completed {
+  border-left: 4px solid var(--secondary-color);
+  background-color: rgba(52, 168, 83, 0.05);
+}
+
+.step-description {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.step-due-date {
+  color: var(--gray-color);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.toggle-completion, .toggle-btn {
+  padding: 0.5rem 1rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.toggle-completion:hover, .toggle-btn:hover {
+  background-color: #3367d6;
+}
+
+.treatment-step.completed .toggle-completion {
+  background-color: var(--secondary-color);
+}
+
+.treatment-step.completed .toggle-completion:hover {
+  background-color: #2e974a;
+}
+
+/* Progress Graph Styles */
+.progress-graph {
+  background-color: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.progress-graph h2 {
+  margin-bottom: 1.5rem;
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 0.5rem;
+}
+
+.chart-container {
+  height: 400px;
+  width: 100%;
+}
+
+/* Follow-up Tracker Styles */
+.follow-up-tracker {
+  background-color: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.follow-up-tracker h2 {
+  margin-bottom: 1.5rem;
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 0.5rem;
+}
+
+.progress-container {
+  margin-bottom: 2rem;
+}
+
+.progress-bar {
+  height: 10px;
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: var(--secondary-color);
+  transition: width 0.5s ease;
+}
+
+.progress-label {
+  text-align: right;
+  font-size: 0.9rem;
+  color: var(--gray-color);
+}
+
+.follow-up-list {
+  list-style: none;
+}
+
+.follow-up-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+.follow-up-item:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.follow-up-item.completed {
+  border-left: 4px solid var(--secondary-color);
+  background-color: rgba(52, 168, 83, 0.05);
+}
+
+.follow-up-item.overdue {
+  border-left: 4px solid var(--danger-color);
+}
+
+.step-checkbox {
+  margin-right: 1rem;
+}
+
+.step-checkbox input[type="checkbox"] {
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+}
+
+.step-details {
+  flex: 1;
+}
+
+.overdue-badge {
+  background-color: var(--danger-color);
+  color: white;
+  font-size: 0.8rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  margin-left: 0.5rem;
+}
+
+/* Footer Styles */
+.App-footer {
+  background-color: var(--dark-color);
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  margin-top: auto;
+}
+
+/* Error Styles */
+.error {
+  color: var(--danger-color);
+  padding: 1rem;
+  background-color: rgba(234, 67, 53, 0.1);
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  border-left: 4px solid var(--danger-color);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .main-nav ul {
+    flex-direction: column;
+  }
+  
+  .main-nav a {
+    text-align: center;
+    padding: 0.8rem;
+  }
+  
+  .follow-up-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .step-checkbox {
+    margin-bottom: 0.5rem;
+  }
+  
+  .step-details {
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+  
+  .toggle-btn {
+    width: 100%;
+  }
+} 

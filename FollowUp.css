@@ -1,0 +1,310 @@
+/* Follow-up Components Styles */
+
+/* Manager Component Styles */
+.follow-up-manager {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.follow-up-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.follow-up-header h2 {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 1.5rem;
+}
+
+.add-follow-up-button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.add-follow-up-button:hover {
+  background-color: #2980b9;
+}
+
+.loading-indicator {
+  text-align: center;
+  padding: 20px;
+  color: #6c757d;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+/* Form Styles */
+.follow-up-form {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.follow-up-form h3 {
+  margin-top: 0;
+  color: #2c3e50;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.follow-up-form .form-group {
+  margin-bottom: 15px;
+}
+
+.follow-up-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #495057;
+}
+
+.follow-up-form select,
+.follow-up-form textarea,
+.follow-up-form input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 0.95rem;
+}
+
+.follow-up-form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.follow-up-form .error-message {
+  color: #e74c3c;
+  margin-bottom: 15px;
+  padding: 8px;
+  background-color: #fde2e2;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.follow-up-form .form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.follow-up-form .cancel-button {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+}
+
+.follow-up-form .submit-button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+}
+
+.follow-up-form .cancel-button:hover {
+  background-color: #5a6268;
+}
+
+.follow-up-form .submit-button:hover {
+  background-color: #2980b9;
+}
+
+/* List Styles */
+.follow-up-list {
+  margin-top: 20px;
+}
+
+.follow-up-list h3 {
+  color: #2c3e50;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.follow-up-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.follow-up-list .follow-up-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  background-color: white;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.follow-up-list .follow-up-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.follow-up-list .follow-up-item.completed {
+  background-color: #f8f9fa;
+  border-color: #e9ecef;
+}
+
+.follow-up-list .follow-up-item.completed .follow-up-description {
+  text-decoration: line-through;
+  color: #6c757d;
+}
+
+.follow-up-list .follow-up-info {
+  flex: 1;
+}
+
+.follow-up-list .follow-up-header {
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.follow-up-list .follow-up-type {
+  font-weight: bold;
+  color: #2c3e50;
+  margin-right: 10px;
+}
+
+.follow-up-list .follow-up-date {
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+.follow-up-list .follow-up-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.follow-up-list .complete-button,
+.follow-up-list .delete-button {
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.follow-up-list .complete-button {
+  background-color: #2ecc71;
+  color: white;
+}
+
+.follow-up-list .delete-button {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.follow-up-list .complete-button:hover {
+  background-color: #27ae60;
+}
+
+.follow-up-list .delete-button:hover {
+  background-color: #c0392b;
+}
+
+.follow-up-list.empty-list {
+  padding: 20px;
+  text-align: center;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  color: #6c757d;
+}
+
+/* FollowUpTracker Styles */
+.follow-up-tracker {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.follow-up-tracker .header-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.follow-up-tracker .header-actions h2 {
+  margin: 0;
+  color: #2c3e50;
+}
+
+.follow-up-tracker .manage-btn {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+}
+
+.follow-up-tracker .manage-btn:hover {
+  background-color: #2980b9;
+}
+
+.follow-up-tracker .progress-container {
+  margin-bottom: 20px;
+}
+
+.follow-up-tracker .progress-bar {
+  height: 12px;
+  background-color: #ecf0f1;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+
+.follow-up-tracker .progress-fill {
+  height: 100%;
+  background-color: #3498db;
+}
+
+.follow-up-tracker .progress-label {
+  text-align: right;
+  font-size: 0.85rem;
+  color: #7f8c8d;
+}
+
+.follow-up-tracker.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.follow-up-tracker.empty-state p {
+  margin-bottom: 20px;
+  color: #7f8c8d;
+} 

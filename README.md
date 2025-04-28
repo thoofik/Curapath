@@ -1,104 +1,111 @@
-# Curapath
+# Curapath Database Setup Guide
 
-Curapath is a healthcare application designed to help patients track and manage their treatment plans. It provides a multilingual interface, progress tracking, and follow-up management features.
+This guide explains how to set up the Supabase database for the Curapath application.
 
-## Features
+## Prerequisites
 
-- **Treatment Plan Management**: View and track prescribed treatment steps
-- **Multilingual Support**: Translate treatment plans into multiple languages
-- **Progress Tracking**: Visual representation of recovery progress
-- **Follow-up Management**: Track completion of treatment steps with reminders
-- **Email Notifications**: Receive reminders for upcoming and overdue steps
+- A Supabase account and project
+- Access to the Supabase dashboard for your project
 
-## Project Structure
+## Setting Up the Database
+
+### Using the SQL Editor
+
+1. Log in to your Supabase dashboard
+2. Navigate to the **SQL Editor** section
+3. Click "New Query" to create a new SQL script
+4. Copy and paste the contents of the `follow_up_schema.sql` file
+5. Run the script to create the database schema
+
+### Schema Details
+
+The `follow_up_schema.sql` file creates:
+
+- **Tables**:
+  - `follow_ups`: Stores patient follow-up tasks
+
+- **Indexes**:
+  - `follow_ups_patient_id_idx`: For faster patient-based queries
+  - `follow_ups_date_idx`: For faster date-based queries
+
+- **Functions**:
+  - `update_modified_column()`: Automatically updates timestamps
+  - `get_upcoming_follow_ups()`: Retrieves upcoming follow-ups for a patient
+  - `mark_all_overdue_as_completed()`: Marks all overdue tasks as completed
+
+- **Views**:
+  - `overdue_follow_ups`: Shows all overdue and incomplete follow-ups
+
+- **Row Level Security (RLS)**:
+  - Security policies to control data access
+
+## Connecting to the Application
+
+To connect your application to Supabase:
+
+1. In your Supabase project, go to **Settings** > **API**
+2. Copy your **URL** and **anon public** key
+3. Create a `.env` file in your project root with:
 
 ```
-curapath/
-├── curapath-frontend/       # React frontend application
-│   ├── public/              # Static files
-│   ├── src/                 # Source code
-│   │   ├── components/      # React components
-│   │   ├── services/        # API and database services
-├── functions/               # Netlify serverless functions
-├── netlify.toml             # Netlify configuration
+REACT_APP_SUPABASE_URL=your_supabase_url
+REACT_APP_SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
 
-## Tech Stack
+4. Restart your application to load the environment variables
 
-- **Frontend**: React, React Router, Chart.js
-- **Backend**: Netlify Serverless Functions
-- **Database**: Supabase (PostgreSQL)
-- **API Integration**: Google Translate API
-- **Deployment**: Netlify
+## Testing the Connection
 
-## Setup and Installation
+You can test if your database is properly connected by:
 
-1. Clone the repository:
-   ```
-   git clone https://github.com/yourusername/curapath.git
-   cd curapath
-   ```
+1. Running the application
+2. Using the FollowUp management features
+3. Checking the Supabase dashboard to see if data is being stored
 
-2. Install dependencies:
-   ```
-   npm install
-   cd curapath-frontend
-   npm install
-   ```
+## Common Issues
 
-3. Set up environment variables:
-   Create a `.env` file in the `curapath-frontend` directory with the following variables:
-   ```
-   REACT_APP_SUPABASE_URL=your_supabase_url
-   REACT_APP_SUPABASE_ANON_KEY=your_supabase_anon_key
-   ```
+### Row Level Security (RLS)
 
-4. Start the development server:
-   ```
-   npm run dev
-   ```
+By default, RLS is enabled and will restrict access based on authentication. If you're having trouble accessing data:
 
-## Database Setup
+1. Check that your authentication is set up correctly
+2. Review the RLS policies in the schema
+3. For testing, you can temporarily disable RLS with: `ALTER TABLE follow_ups DISABLE ROW LEVEL SECURITY;`
 
-1. Create a new project in [Supabase](https://supabase.io/)
-2. Create the following tables:
-   - `patients`: Store patient information
-   - `treatment_steps`: Store treatment plan steps with completion status
+### UUID Function
 
-### Schema
+If you encounter errors about `uuid_generate_v4()`, you need to enable the UUID extension:
 
-#### patients
 ```sql
-CREATE TABLE patients (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-  name TEXT NOT NULL,
-  email TEXT,
-  phone TEXT,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
-);
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 ```
 
-#### treatment_steps
+Run this command before creating tables.
+
+## Advanced Usage
+
+### Custom SQL Queries
+
+For complex data retrieval, you can create custom SQL functions:
+
 ```sql
-CREATE TABLE treatment_steps (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-  patient_id UUID REFERENCES patients(id),
-  description TEXT NOT NULL,
-  due_date DATE NOT NULL,
-  completed BOOLEAN DEFAULT false,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
-);
+CREATE OR REPLACE FUNCTION get_follow_ups_by_type(p_patient_id VARCHAR, p_type VARCHAR)
+RETURNS SETOF follow_ups AS $$
+BEGIN
+  RETURN QUERY
+  SELECT *
+  FROM follow_ups
+  WHERE patient_id = p_patient_id
+  AND follow_up_type = p_type
+  ORDER BY follow_up_date ASC;
+END;
+$$ LANGUAGE plpgsql;
 ```
 
-## Deployment
+### Database Maintenance
 
-### Deploy to Netlify
+Regularly review and optimize your database:
 
-1. Connect your repository to Netlify
-2. Set the build command to `npm run build`
-3. Set the publish directory to `curapath-frontend/build`
-4. Set environment variables in the Netlify UI
-
-## License
-
-This project is licensed under the MIT License. 
+- Check for unused indexes
+- Monitor query performance
+- Back up your data regularly 
