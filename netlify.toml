@@ -1,0 +1,29 @@
+[build]
+  command = "cd curapath-frontend && npm run build"
+  publish = "curapath-frontend/build"
+  functions = "functions"
+
+# Redirect all routes back to index.html for SPA routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Function settings
+[functions]
+  node_bundler = "esbuild"
+
+# Environment variable settings (these would be set in Netlify UI for production)
+[build.environment]
+  REACT_APP_SUPABASE_URL = "YOUR_SUPABASE_URL"
+  REACT_APP_SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY"
+
+# For local development with Netlify CLI
+[dev]
+  command = "cd curapath-frontend && npm start"
+  port = 8888
+  targetPort = 3000
+  publish = "curapath-frontend/build"
+  framework = "react"
+  functions = "functions"
+  autoLaunch = true 
